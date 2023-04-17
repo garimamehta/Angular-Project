@@ -1,0 +1,10 @@
+<div class="stepper stepper-page">
+    <kendo-stepper  [linear]="false"    successIcon="k-icon k-i-check-circle"
+    errorIcon="k-icon k-i-close-outline"  [steps]="stepperData" [currentStep]="currentStep" stepType="full"
+    (currentStepChange)="currentStepChange($event)">
+    <span class="k-step-label" >
+        <div class="stepper-text">{{ stepperData.status }}</div>
+       
+    </span>
+</kendo-stepper>
+</div>

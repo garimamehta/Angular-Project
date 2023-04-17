@@ -1,0 +1,130 @@
+<div class="">
+    <div class="btn">
+        <div>
+            <button>Save and Finish Later</button>
+            <button>Inspection Attachments</button>
+        </div>
+        <div >
+            <button>View Asset</button>
+            <button>Selection Mode</button>
+            <button (click)="continueNextStep()">Continue Next</button>
+        </div>
+
+    </div>
+    <div class="d-flex">
+        <div>
+            <span class="heading">TEST-AU_20201989839</span>
+        </div>
+        <div class="inspection-text">
+            <span>Inspection</span>
+            <span><b>SL3</b></span>
+            <span>Started On 17Jan2020 By levvya</span>
+        </div>
+    </div>
+    <div class="stepper-container">
+        <app-stepper [stepperData]="stepperData"   (onSteperChange)="currentStepChange($event)" [currentStep]="currentStep"></app-stepper>
+    </div>
+    <div class="body-section">
+        <div class="left-list-panel">
+            <div class="filter-dropdown-section">
+                <kendo-dropdownlist [data]="familyTypes" valueField="id" textField="name">
+                </kendo-dropdownlist>
+                <kendo-dropdownlist [data]="steps" valueField="id" textField="name">
+                </kendo-dropdownlist>
+            </div>
+            <div class="list-scrollable">
+                <kendo-listview [data]="itemList">
+                    <ng-template kendoListViewItemTemplate let-dataItem="dataItem">
+                        <div class="list-item">
+                            <div class="naCount">
+                                <span>N/A</span>
+                                <span></span>
+                                <span>3</span>
+                            </div>
+                            <div class="titleSec">
+                                <span></span>
+                                <span>{{ dataItem.title }}</span>
+                                <span class="desc">{{ dataItem.description }}</span>
+                            </div>
+                        </div>
+                    </ng-template>
+                </kendo-listview>
+
+            </div>
+        </div>
+        <div class="right-tab-panel">
+
+
+            <div class="example-wrapper">
+                <kendo-tabstrip>
+                    <kendo-tabstrip-tab title="RESULTS" [selected]="true">
+                        <ng-template kendoTabContent>
+                            <div class="tab-body-section">
+                                <ng-template [ngIf]="currentStep==0">
+                                    <span class="desc">RESULT</span>
+                                    <div class="result-section">
+                                        <button class="pass" [class.active]="stepperData[currentStep].result=='Pass'" (click)="saveResult('Pass')">PASS</button>
+                                        <button class="fail"  [class.active]="stepperData[currentStep].result=='Fail'" (click)="saveResult('Fail')">FAIL</button>
+                                    </div>
+                                    <span class="desc">NOTES</span>
+                                    <div>
+                                        <textarea name="" id="" style="width: 100%;" rows="4"></textarea>
+                                    </div>
+                                    <span class="desc">ATTACHMENTS</span>
+                                    <div>
+                                        <kendo-upload>
+                                            <kendo-upload-messages
+                                                select="Click or drag and drop a file to upload."></kendo-upload-messages>
+                                        </kendo-upload>
+                                    </div>
+                                </ng-template>
+                                <ng-template [ngIf]="currentStep==1">
+                                    <span class="desc">RESULT</span>
+                                    <div class="result-section">
+                                        <button class="pass" [class.active]="stepperData[currentStep].result=='Pass'" (click)="saveResult('Pass')">PASS</button>
+                                        <button class="fail"  [class.active]="stepperData[currentStep].result=='Fail'" (click)="saveResult('Fail')">FAIL</button>
+                                    </div>
+                                    <span class="desc">DESCRIPTION</span>
+                                    <div>
+                                        <textarea name="" id="" style="width: 100%;" rows="4"></textarea>
+                                    </div>
+                                    <span class="desc">ATTACHMENTS</span>
+                                    <div>
+                                        <kendo-upload>
+                                            <kendo-upload-messages
+                                                select="Click or drag and drop a file to upload."></kendo-upload-messages>
+                                        </kendo-upload>
+                                    </div>
+                                </ng-template>
+                                <ng-template [ngIf]="currentStep==2">
+                                    <span class="desc">RESULT</span>
+                                    <div class="result-section">
+                                        <button class="pass" [class.active]="stepperData[currentStep].result=='Pass'" (click)="saveResult('Pass')">PASS</button>
+                                        <button class="fail"  [class.active]="stepperData[currentStep].result=='Fail'" (click)="saveResult('Fail')">FAIL</button>
+                                    </div>
+                                    <span class="desc">NOTES</span>
+                                    <div>
+                                        <textarea name="" id="" style="width: 100%;" rows="4"></textarea>
+                                    </div>
+                                </ng-template>
+                            </div>
+
+                        </ng-template>
+                    </kendo-tabstrip-tab>
+                    <kendo-tabstrip-tab title="INSTRUCTIONS">
+                        <ng-template kendoTabContent>
+                            <p>Tab 2 Content</p>
+                        </ng-template>
+                    </kendo-tabstrip-tab>
+                    <kendo-tabstrip-tab title="TEST LOG">
+                        <ng-template kendoTabContent>
+                            <p>Tab 3 Content</p>
+                        </ng-template>
+                    </kendo-tabstrip-tab>
+                </kendo-tabstrip>
+            </div>
+
+
+        </div>
+    </div>
+</div>

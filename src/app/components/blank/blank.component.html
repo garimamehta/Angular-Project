@@ -1,0 +1,8 @@
+<div>
+  <div class="d-grid main">
+    <app-tile *ngFor="let item of pagedDestinations; index as i" [assetData]="item"></app-tile>
+  </div>
+  <kendo-datapager [style.width.%]="100" [pageSize]="pageSize" [skip]="skip" [total]="total"
+    (pageChange)="onPageChange($event)">
+  </kendo-datapager>
+</div>

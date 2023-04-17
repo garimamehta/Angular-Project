@@ -1,0 +1,134 @@
+::ng-deep .asset-history {
+    .k-step-label {
+        display: table-column !important;
+
+        .stepper-label {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .stepper-text{
+            font-weight: 400;
+        }
+    }
+    .k-step{
+        max-height: unset !important;
+        margin-bottom: 10px;
+    }
+    .k-stepper, .k-step-current:hover{
+        .k-step-indicator {
+            width: 50px;
+            height: 50px;
+            &::after {
+               content: unset;
+            }
+            border-color: rgb(16,111,249);
+            background-color: #ECF4FF;
+            &:hover{
+                background-color: #ebebeb !important;
+            }
+            .link-primary{
+                color: #5FACFF;
+            }
+        }
+
+        .k-step-done:hover .k-step-indicator {
+            background-color: #fff;
+        }
+    }
+
+
+    .k-step-list-vertical~.k-progressbar {
+        left: 128px;
+        top: -20px;
+    }
+
+    .k-step-indicator-icon {
+        font-size: 25px;
+        color: rgb(16,111,249);
+    }
+
+    .k-progressbar {
+        width: 1px;
+        .k-selected {
+            border-color: #5FACFF;
+            background-color: #5FACFF;
+        }
+    }
+    .k-step-list-vertical .k-step {
+        min-height: 73px;
+    }
+
+    .date-format {
+        font-weight: 600;
+        font-size: 14px;
+    }
+}
+
+.asset-history {
+    padding: 1.5em;
+
+    >* {
+        margin: 1em .5em;
+    }
+
+    .btns {
+        display: flex;
+        justify-content: end;
+        gap: 1em;
+
+        button:first-child {
+            margin-right: auto;
+        }
+    }
+
+    .asset-details,
+    .location-info {
+        >div {
+            display: flex;
+            gap: 1em;
+
+            div {
+                flex: 1;
+
+                p {
+                    margin: 0;
+                }
+            }
+
+            >div:last-child {
+                margin-left: auto;
+            }
+        }
+
+        .flex-1-5 {
+            flex: 1.5 !important;
+        }
+
+        .flex-0-5 {
+            flex: 0.5 !important;
+        }
+    }
+
+    .stepper {
+        .left-pannel {
+            display: flex;
+            flex-direction: column;
+            width: 100px;
+        }
+
+    }
+
+    .inspection-text {
+        text-align: end;
+
+        a {
+            text-transform: uppercase;
+            display: grid;
+        }
+    }
+
+}
+
+.fw-bold {
+    font-weight: bold;
+}

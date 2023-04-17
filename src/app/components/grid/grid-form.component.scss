@@ -1,0 +1,53 @@
+.k-tooltip-validation {
+    color: red;
+}
+
+.ng-submitted .ng-invalid {
+    border: 1px solid red;
+}
+
+::ng-deep{
+        td {
+            height: 36px;
+        }
+        td.action-cell{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+        }
+        .k-grid-save-command{
+            display: block !important;
+        }
+
+        tr.k-grid-edit-row td.k-selected{
+            cursor: cell;
+            &::after{
+            background-color: green;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            content: "";
+            height: 5px;
+            width: 5px;
+            }
+        }
+        .errorCell{
+            position: absolute;
+            padding: 0.5em;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            &::before {
+              content: "";
+              height: 20px;
+              width: 20px;
+              background: red;
+              position: absolute;
+              transform: rotate(45deg);
+              top: -10px;
+              left: -10px;
+          }
+          }
+    }

@@ -1,0 +1,109 @@
+<div>
+    <form [formGroup]="formGroup" [class.ng-submitted]="submitted">
+        <kendo-grid #kendoGrid [data]="assetData" (add)="addHandler($event)" (edit)="editHandler($event)"
+            (cancel)="cancelHandler($event)" (remove)="removeHandler($event)"
+            [selectable]="selectableSettings"
+            (selectionChange)="onCellSelction($event)"
+            (keydown)="enablePasteMode($event)"
+            (excelPaste)="onExcelPaste($event)"
+            kendoGridSelectBy
+            [(selectedKeys)]="mySelection"
+            (cellClick)="onCellClick($event)" 
+            (mouseleave)="newRowCreation($event)"
+            [navigable]="true"
+            (cellClose)="cellCloseHandler($event)"
+            [sortable]="true"
+            [sort]="sort"
+            
+
+              >
+          
+            <ng-template kendoGridToolbarTemplate>
+                <!-- <button kendoGridAddCommand>Add new</button> -->
+                <button kendoGridSaveCommand (click)="saveHandler(kendoGrid)">Save Changes</button>
+            </ng-template>
+            <kendo-grid-column field="ownerLocation" title="Location">
+                <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                    <kendo-dropdownlist [defaultItem]="{ id: '', name: 'select location' }" [data]="locations"
+                        textField="name" valueField="id" [valuePrimitive]="true"
+                        formControlName="ownerLocation">
+                    </kendo-dropdownlist>
+                    <div *ngIf="f['ownerLocation'].errors && submitted" class="k-tooltip-validation">
+                        <div>This field is required</div>
+                    </div>
+                </ng-template>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div [class.errorCell]="findCellClass('ownerLocation',dataItem.ownerLocation)">
+                    {{dataItem.ownerLocation}}
+                        </div>
+                        <span></span>
+                    </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="pressureRating" title="Pressure Rating" >
+                <ng-template kendoGridEditTemplate let-formGroup="formGroup">
+                    <input kendoTextBox formControlName="pressureRating" onkeypress="updateValue()" />
+                    <div *ngIf="submitted && f['pressureRating'].errors" class="k-tooltip-validation">
+                        <div>This field is required</div>
+                    </div>
+                </ng-template>
+                <!-- <ng-template kendoGridCellTemplate let-dataItem >
+                    <div>
+                            {{ dataItem.pressureRating?'Active':'InActive'}}
+                    </div>
+                </ng-template> -->
+            </kendo-grid-column>
+            <kendo-grid-column field="inspectionDate" title="Date" editor="date" format="dd/MM/yyyy">
+                <ng-template kendoGridEditTemplate let-formGroup="formGroup">
+                    <kendo-datepicker  formControlName="inspectionDate" format="dd/MM/yyyy"></kendo-datepicker>
+                    <div *ngIf="submitted && f['inspectionDate'].errors" class="k-tooltip-validation">
+                        <div>This field is required</div>
+                    </div>
+                </ng-template>
+                <ng-template kendoGridCellTemplate let-dataItem >
+                    <div [class.errorCell]="findCellClass('inspectionDate',dataItem.inspectionDate)">
+                            {{ dataItem.inspectionDate | dateFormat:'dd/MM/yyyy'}}
+                    </div>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="progressValue" title="Range" editor="numeric">
+                <ng-template kendoGridEditTemplate let-formGroup="formGroup">
+                    <input kendoTextBox type="number" formControlName="progressValue" />
+                    <div *ngIf="submitted && f['progressValue'].errors" class="k-tooltip-validation">
+                        <div>This field is required</div>
+                    </div>
+                </ng-template>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <div [class.errorCell]="findCellClass('progressValue',dataItem.progressValue)">
+                            {{ dataItem.progressValue }}
+                    </div>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="progressStatus" title="Status" editor="boolean">
+                <ng-template kendoGridEditTemplate let-formGroup="formGroup">
+                    <input type="checkbox" kendoCheckBox formControlName="progressStatus" />
+                </ng-template>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <div [class.errorCell]="findCellClass('progressStatus',dataItem.progressStatus)">
+                            {{ dataItem.progressStatus }}
+                    </div>
+                </ng-template>
+            </kendo-grid-column>
+            <!-- <kendo-grid-command-column class="action-cell" title="Action" >
+                <ng-template kendoGridCellTemplate let-isNew="isNew">
+                    <button kendoGridEditCommand [primary]="true">Edit</button>
+                    <button kendoGridRemoveCommand>Remove</button>
+                    <button kendoGridSaveCommand>
+                        {{ isNew ? "Add" : "Update" }}
+                    </button>
+                    <button kendoGridCancelCommand>
+                        {{ isNew ? "Discard changes" : "Cancel" }}
+                    </button>
+                </ng-template>
+            </kendo-grid-command-column> -->
+        </kendo-grid>
+        <kendo-contextmenu #gridmenu [items]="items" (select)="onSelect($event)">
+        </kendo-contextmenu>
+        
+    </form>  <div id="example">
+        <div id="spreadsheet" style="width: 100%;"></div>
+</div>

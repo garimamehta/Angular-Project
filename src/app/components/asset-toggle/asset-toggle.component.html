@@ -1,0 +1,44 @@
+<div class="toggle">
+
+    <div class="list" *ngIf="assetHistory.type=='list'">
+        <ul>
+            <li>Commissioned date changed</li>
+            <li>Asset date changed</li>
+            <li>Commissioned LDAP changed</li>
+            <li>Asset Status Changed</li>
+        
+        </ul>
+    </div>
+    <div class="steps" *ngIf="assetHistory.type=='steps'">
+       <table>
+        <tbody>
+            <tr>
+                <td>Visual</td>
+                <td class="text-success">Passed</td>
+                <td>VSoam</td>
+                <td><a class="link-primary">Details</a></td>
+            </tr>
+            <tr>
+                <td>Visual</td>
+                <td class="text-danger">Failed</td>
+                <td>VSoam</td>
+                <td><a class="link-primary">Details</a></td>
+            </tr>
+            <tr>
+                <td>Visual</td>
+                <td>Not Required</td>
+                <td>VSoam</td>
+                <td><a class="link-primary">Details</a></td>
+            </tr>
+        </tbody>
+       </table>
+    </div>
+    <div class="statement" *ngIf="assetHistory.type=='statement'">
+       <p>To Carry Out Inspection</p>
+    </div>
+    <div class="pdf_viewer" *ngIf="assetHistory.type=='pdf'">
+        <div #pdfViewer></div>
+
+        <!-- <iframe src="../../../assets/img/dummy-pdf_2_2.pdf" title="description"></iframe> -->
+    </div>
+</div>

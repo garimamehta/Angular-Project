@@ -1,0 +1,41 @@
+.stepper {
+    padding: 1em;
+}
+
+::ng-deep .stepper-page .k-stepper {
+    .k-step-indicator-text {
+        display: none !important;
+    }
+
+    .k-step-indicator {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .k-step-label .k-step-text {
+        max-width: calc(10em - 2px);
+        flex-grow: 1;
+        white-space: pre-wrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-transform: uppercase;
+        font-size: 0.8em;
+    }
+
+    .k-step-success .k-step-indicator {
+        border-color: green !important;
+        background-color: green !important;
+    }
+
+    
+    .k-step-error .k-step-indicator {
+        border-color: red !important;
+        background-color: red !important;
+    }
+
+    
+    .k-icon{
+        font-size: 20px;
+    }
+
+}

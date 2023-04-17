@@ -1,0 +1,50 @@
+
+<kendo-card  [ngClass]="getBackground(assetData.assetStatus)">
+  <kendo-card-body class="d-flex flex-column" (click)="assetHistory()">
+    <div class="d-flex location">
+      <!-- <h1 kendoCardTitle>OWNER LOCATION</h1> -->
+      <p kendoCardSubtitle>{{assetData.ownerLocation.slice(0,3)}}</p>
+      <p kendoCardSubtitle>{{assetData.physicalLocation}}</p>
+     </div>
+     <!-- <div>
+      <h1 kendoCardTitle>PHYSICAL LOCATION</h1>
+      <p kendoCardSubtitle>{{assetData.physicalLocation}}</p>
+     </div> -->
+      <div>
+        <h1 kendoCardSubtitle >{{assetData.fullDescription}}</h1>
+        <p kendoCardTitle>This is full description of asset serial </p>
+      </div>
+      <div class="d-flex">
+        <h1 kendoCardTitle >PRESSURE RATING : </h1>
+        <p kendoCardSubtitle>{{assetData.pressureRating}}</p>
+      </div>
+      <div>
+        <h1 kendoCardTitle>CONTAINER</h1>
+        <p kendoCardSubtitle>{{assetData.container}}</p>
+      </div>
+      <div>
+        <h1 kendoCardTitle class="next-inspection">NEXT INSPECTION</h1>
+        <p kendoCardSubtitle>{{assetData.nextInspectionDate|date:'dd MMM yyyy' | titlecase}}</p>
+      </div>
+      <!-- <p>
+        {{assetData.fullDescription}}
+        </p>
+      <p>
+        {{assetData.container}}
+        </p>
+      <p>
+        {{assetData.inspectionDate}}
+        </p> -->
+          <!-- <kendo-progressbar
+          [style.height.px]="10"
+          orientation="horizontal" 
+          [label]="labelSettings"
+          [progressCssStyle]="{'background':assetData.progressColor+''}"
+          [value]="assetData.progressValue"></kendo-progressbar> -->
+          <app-statusbar-range [lastInspectionDate]="assetData.lastInspectionDate"  [nextInspectionDate]="assetData.nextInspectionDate"></app-statusbar-range>
+  </kendo-card-body>
+  <kendo-card-footer class="k-hstack border-0" >
+    <button class="btn btn-block btn-sm text-color" >{{assetData.assetStatus|uppercase}}</button>
+  </kendo-card-footer>
+</kendo-card>
+
